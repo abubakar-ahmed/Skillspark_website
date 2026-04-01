@@ -1,0 +1,521 @@
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); color: var(--color-text-primary); }
+
+.nav { background: #1F4E79; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
+.nav-brand { color: #fff; font-size: 18px; font-weight: 500; }
+.nav-brand span { color: #9FE1CB; }
+.nav-links { display: flex; gap: 1.5rem; }
+.nav-links a { color: rgba(255,255,255,0.85); font-size: 14px; cursor: pointer; text-decoration: none; }
+.nav-links a:hover { color: #fff; }
+.nav-cta { background: #1D9E75; color: #fff; border: none; padding: 8px 20px; border-radius: 6px; font-size: 14px; cursor: pointer; font-weight: 500; }
+.nav-cta:hover { background: #0F6E56; }
+
+.hero { background: linear-gradient(135deg, #1F4E79 0%, #0C447C 60%, #0F6E56 100%); padding: 5rem 2rem 4rem; text-align: center; color: #fff; }
+.hero h1 { font-size: 36px; font-weight: 500; line-height: 1.3; margin-bottom: 1rem; max-width: 680px; margin-left: auto; margin-right: auto; }
+.hero h1 span { color: #9FE1CB; }
+.hero p { font-size: 17px; color: rgba(255,255,255,0.85); max-width: 560px; margin: 0 auto 2rem; line-height: 1.7; }
+.hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary { background: #1D9E75; color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 500; }
+.btn-primary:hover { background: #0F6E56; }
+.btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); padding: 12px 28px; border-radius: 8px; font-size: 15px; cursor: pointer; }
+.btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+.stats-bar { background: #fff; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; justify-content: center; gap: 0; flex-wrap: wrap; }
+.stat-item { padding: 1.5rem 2.5rem; text-align: center; border-right: 0.5px solid var(--color-border-tertiary); }
+.stat-item:last-child { border-right: none; }
+.stat-num { font-size: 28px; font-weight: 500; color: #1F4E79; }
+.stat-label { font-size: 13px; color: var(--color-text-secondary); margin-top: 2px; }
+
+.section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+.section-title { font-size: 26px; font-weight: 500; text-align: center; margin-bottom: 0.5rem; }
+.section-sub { font-size: 15px; color: var(--color-text-secondary); text-align: center; margin-bottom: 3rem; line-height: 1.6; }
+
+.courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+.course-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: 12px; overflow: hidden; transition: transform 0.15s; }
+.course-card:hover { transform: translateY(-3px); }
+.course-banner { height: 8px; }
+.course-body { padding: 1.25rem; }
+.course-icon { font-size: 28px; margin-bottom: 0.75rem; display: block; }
+.course-title { font-size: 16px; font-weight: 500; margin-bottom: 0.5rem; }
+.course-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 1rem; }
+.course-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+.badge-green { background: #EAF3DE; color: #3B6D11; }
+.badge-blue { background: #E6F1FB; color: #185FA5; }
+.badge-amber { background: #FAEEDA; color: #854F0B; }
+
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; }
+.why-card { background: var(--color-background-secondary); border-radius: 10px; padding: 1.5rem; }
+.why-num { font-size: 32px; font-weight: 500; color: #1D9E75; margin-bottom: 0.5rem; }
+.why-title { font-size: 15px; font-weight: 500; margin-bottom: 0.4rem; }
+.why-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+
+.how-steps { display: flex; gap: 0; position: relative; flex-wrap: wrap; justify-content: center; }
+.step { flex: 1; min-width: 180px; max-width: 220px; text-align: center; padding: 1.5rem 1rem; position: relative; }
+.step-circle { width: 48px; height: 48px; border-radius: 50%; background: #1F4E79; color: #fff; font-size: 18px; font-weight: 500; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+.step-title { font-size: 14px; font-weight: 500; margin-bottom: 0.4rem; }
+.step-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+.step-arrow { position: absolute; right: -12px; top: 40px; color: var(--color-text-secondary); font-size: 20px; z-index: 1; }
+
+.testimonials { background: var(--color-background-secondary); padding: 4rem 2rem; }
+.test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; max-width: 1000px; margin: 0 auto; }
+.test-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: 12px; padding: 1.5rem; }
+.test-quote { font-size: 14px; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: 1rem; font-style: italic; }
+.test-author { display: flex; align-items: center; gap: 10px; }
+.test-avatar { width: 36px; height: 36px; border-radius: 50%; background: #1F4E79; color: #fff; font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.test-name { font-size: 14px; font-weight: 500; }
+.test-track { font-size: 12px; color: #1D9E75; }
+
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+.price-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: 12px; padding: 1.5rem; }
+.price-card.featured { border: 2px solid #1D9E75; }
+.price-track { font-size: 16px; font-weight: 500; margin-bottom: 0.25rem; }
+.price-amount { font-size: 30px; font-weight: 500; color: #1F4E79; margin: 0.75rem 0; }
+.price-amount span { font-size: 15px; color: var(--color-text-secondary); font-weight: 400; }
+.price-duration { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1rem; }
+.price-features { list-style: none; margin-bottom: 1.5rem; }
+.price-features li { font-size: 13px; padding: 5px 0; color: var(--color-text-secondary); display: flex; gap: 8px; align-items: flex-start; }
+.price-features li::before { content: '✓'; color: #1D9E75; font-weight: 500; flex-shrink: 0; }
+.price-btn { width: 100%; padding: 10px; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 500; }
+.price-btn-filled { background: #1D9E75; color: #fff; border: none; }
+.price-btn-outline { background: transparent; color: #1F4E79; border: 1.5px solid #1F4E79; }
+
+.contact-section { background: #1F4E79; padding: 4rem 2rem; text-align: center; color: #fff; }
+.contact-section h2 { font-size: 26px; font-weight: 500; margin-bottom: 0.5rem; }
+.contact-section p { color: rgba(255,255,255,0.8); font-size: 15px; margin-bottom: 2rem; }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; max-width: 800px; margin: 0 auto 2rem; }
+.contact-item { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 1.25rem; }
+.contact-item-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 0.4rem; }
+.contact-item-val { font-size: 14px; color: #fff; word-break: break-all; }
+
+.form-row { display: flex; gap: 1rem; max-width: 520px; margin: 0 auto; flex-wrap: wrap; }
+.form-row input { flex: 1; min-width: 180px; padding: 10px 14px; border-radius: 8px; border: none; font-size: 14px; background: rgba(255,255,255,0.15); color: #fff; }
+.form-row input::placeholder { color: rgba(255,255,255,0.5); }
+.form-row button { padding: 10px 24px; background: #1D9E75; color: #fff; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 500; white-space: nowrap; }
+
+.footer { background: #0C1F35; color: rgba(255,255,255,0.6); text-align: center; padding: 1.5rem; font-size: 13px; }
+.footer span { color: #9FE1CB; }
+
+.page { display: none; }
+.page.active { display: block; }
+
+.enroll-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
+.enroll-modal.open { display: flex; }
+.modal-box { background: var(--color-background-primary); border-radius: 16px; padding: 2rem; max-width: 480px; width: 90%; position: relative; }
+.modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--color-text-secondary); }
+.modal-title { font-size: 20px; font-weight: 500; margin-bottom: 0.5rem; }
+.modal-sub { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+.form-group { margin-bottom: 1rem; }
+.form-group label { font-size: 13px; color: var(--color-text-secondary); display: block; margin-bottom: 5px; }
+.form-group input, .form-group select { width: 100%; padding: 10px 14px; border: 0.5px solid var(--color-border-tertiary); border-radius: 8px; font-size: 14px; background: var(--color-background-primary); color: var(--color-text-primary); }
+.modal-submit { width: 100%; padding: 12px; background: #1D9E75; color: #fff; border: none; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 500; margin-top: 0.5rem; }
+.success-msg { display: none; text-align: center; padding: 1rem; }
+.success-msg .tick { font-size: 48px; color: #1D9E75; margin-bottom: 0.5rem; }
+</style>
+
+<div class="nav">
+  <div class="nav-brand">Skill<span>spark</span> Academy</div>
+  <div class="nav-links">
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('courses')">Courses</a>
+    <a onclick="showPage('about')">About</a>
+    <a onclick="showPage('contact')">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="openEnroll()">Enroll Now</button>
+</div>
+
+<div id="home" class="page active">
+  <div class="hero">
+    <h1>Earn in <span>6 months.</span><br>Not 6 years.</h1>
+    <p>Skillspark Vocational Academy equips secondary school graduates in Lagos with practical, affordable skills and the business knowledge to start earning right away.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="openEnroll()">Apply for a Course</button>
+      <button class="btn-outline" onclick="showPage('courses')">View Programs</button>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Training tracks</div></div>
+    <div class="stat-item"><div class="stat-num">3–6</div><div class="stat-label">Months to complete</div></div>
+    <div class="stat-item"><div class="stat-num">120+</div><div class="stat-label">Year 1 target students</div></div>
+    <div class="stat-item"><div class="stat-num">60%</div><div class="stat-label">Graduate employment goal</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Our training programs</div>
+    <div class="section-sub">Practical, competency-based programs designed around what employers and customers actually need.</div>
+    <div class="courses-grid">
+      <div class="course-card">
+        <div class="course-banner" style="background:#1F4E79;"></div>
+        <div class="course-body">
+          <span class="course-icon">🧵</span>
+          <div class="course-title">Fashion & Tailoring</div>
+          <div class="course-desc">Garment construction, pattern drafting, sewing techniques, fabric selection, and fashion branding.</div>
+          <div class="course-meta">
+            <span class="badge badge-blue">3–6 months</span>
+            <span class="badge badge-green">₦250,000</span>
+          </div>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-banner" style="background:#1D9E75;"></div>
+        <div class="course-body">
+          <span class="course-icon">🍰</span>
+          <div class="course-title">Catering & Baking</div>
+          <div class="course-desc">Baking techniques, event catering, food hygiene, pricing strategy, and event service management.</div>
+          <div class="course-meta">
+            <span class="badge badge-blue">3–6 months</span>
+            <span class="badge badge-green">₦250,000</span>
+          </div>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-banner" style="background:#D4537E;"></div>
+        <div class="course-body">
+          <span class="course-icon">💅</span>
+          <div class="course-title">Beauty Services</div>
+          <div class="course-desc">Hair styling, makeup artistry, client management, and how to run your own beauty business.</div>
+          <div class="course-meta">
+            <span class="badge badge-blue">3–6 months</span>
+            <span class="badge badge-green">₦250,000</span>
+          </div>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-banner" style="background:#BA7517;"></div>
+        <div class="course-body">
+          <span class="course-icon">💻</span>
+          <div class="course-title">Digital Skills</div>
+          <div class="course-desc">Graphic design, social media management, content creation, digital marketing, and freelancing platforms.</div>
+          <div class="course-meta">
+            <span class="badge badge-blue">3–6 months</span>
+            <span class="badge badge-green">₦250,000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: var(--color-background-secondary); padding: 1px 0;">
+    <div class="section">
+      <div class="section-title">Why Skillspark?</div>
+      <div class="section-sub">We are not just a skills center. Every program includes business and entrepreneurship education.</div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-num">01</div>
+          <div class="why-title">Entrepreneurship built in</div>
+          <div class="why-desc">Every track includes pricing, bookkeeping, customer acquisition, and digital marketing — not just the technical skill.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-num">02</div>
+          <div class="why-title">Pay in installments</div>
+          <div class="why-desc">A 40–50% deposit gets you started. Pay the rest over 2–3 months. No need to have the full fee upfront.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-num">03</div>
+          <div class="why-title">Performance certificate</div>
+          <div class="why-desc">You earn your certificate by demonstrating skills, not just attending. It means something to employers and clients.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-num">04</div>
+          <div class="why-title">Small classes</div>
+          <div class="why-desc">Small cohorts mean every student gets close supervision and direct instructor feedback throughout the program.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-num">05</div>
+          <div class="why-title">Alumni network</div>
+          <div class="why-desc">Graduates join a WhatsApp alumni community for referrals, mentorship, and ongoing business support.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-num">06</div>
+          <div class="why-title">ITF accreditation path</div>
+          <div class="why-desc">We are working toward Industrial Training Fund accreditation, giving your certificate national recognition.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">How it works</div>
+    <div class="section-sub">From inquiry to income in four clear steps.</div>
+    <div class="how-steps">
+      <div class="step">
+        <div class="step-circle">1</div>
+        <div class="step-title">Apply online</div>
+        <div class="step-desc">Fill the enrollment form and choose your preferred track.</div>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">2</div>
+        <div class="step-title">Pay deposit</div>
+        <div class="step-desc">A 40–50% deposit secures your place. Pay the rest over 2–3 months.</div>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">3</div>
+        <div class="step-title">Train & learn</div>
+        <div class="step-desc">3–6 months of hands-on training plus entrepreneurship modules.</div>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step">
+        <div class="step-circle">4</div>
+        <div class="step-title">Graduate & earn</div>
+        <div class="step-desc">Receive your certificate and launch your business or get hired.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonials">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div class="section-title">What our students say</div>
+      <div class="section-sub">Hear from graduates who have already started earning.</div>
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="test-quote">"I finished the catering track in 4 months. Three months later I was catering events on my own. The business module taught me how to price properly — that was the game changer."</div>
+          <div class="test-author">
+            <div class="test-avatar">AC</div>
+            <div><div class="test-name">Adaeze C.</div><div class="test-track">Catering & Baking graduate</div></div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-quote">"I was waiting for JAMB results and doing nothing. Skillspark gave me something to do and now I run a small tailoring shop. I don't even need university anymore."</div>
+          <div class="test-author">
+            <div class="test-avatar">TO</div>
+            <div><div class="test-name">Tunde O.</div><div class="test-track">Fashion & Tailoring graduate</div></div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-quote">"The digital skills course helped me get three freelance clients on Fiverr before I even graduated. The social media module was very practical and current."</div>
+          <div class="test-author">
+            <div class="test-avatar">FK</div>
+            <div><div class="test-name">Fatima K.</div><div class="test-track">Digital Skills graduate</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="courses" class="page">
+  <div style="background:#1F4E79; padding: 3rem 2rem; text-align:center; color:#fff;">
+    <h2 style="font-size:28px; font-weight:500; margin-bottom:0.5rem;">Our programs</h2>
+    <p style="color:rgba(255,255,255,0.8); font-size:15px;">Choose a track that matches your interest and career goals.</p>
+  </div>
+  <div class="section">
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-track">🧵 Fashion & Tailoring</div>
+        <div class="price-amount">₦250,000 <span>per program</span></div>
+        <div class="price-duration">3–6 months · Morning or afternoon sessions</div>
+        <ul class="price-features">
+          <li>Garment construction & pattern drafting</li>
+          <li>Sewing techniques & fabric selection</li>
+          <li>Clothing alterations & finishing</li>
+          <li>Fashion branding basics</li>
+          <li>Entrepreneurship & business module</li>
+          <li>Performance-based certificate</li>
+        </ul>
+        <button class="price-btn price-btn-outline" onclick="openEnroll('Fashion & Tailoring')">Apply now</button>
+      </div>
+      <div class="price-card featured">
+        <div style="background:#EAF3DE; color:#3B6D11; font-size:11px; padding:3px 10px; border-radius:20px; display:inline-block; margin-bottom:0.75rem; font-weight:500;">Most popular</div>
+        <div class="price-track">🍰 Catering & Baking</div>
+        <div class="price-amount">₦250,000 <span>per program</span></div>
+        <div class="price-duration">3–6 months · Flexible scheduling</div>
+        <ul class="price-features">
+          <li>Baking techniques — cakes, pastries, bread</li>
+          <li>Small event catering</li>
+          <li>Food hygiene & safety</li>
+          <li>Pricing & cost management</li>
+          <li>Event service management</li>
+          <li>Entrepreneurship & business module</li>
+        </ul>
+        <button class="price-btn price-btn-filled" onclick="openEnroll('Catering & Baking')">Apply now</button>
+      </div>
+      <div class="price-card">
+        <div class="price-track">💅 Beauty Services</div>
+        <div class="price-amount">₦250,000 <span>per program</span></div>
+        <div class="price-duration">3–6 months · Hands-on studio sessions</div>
+        <ul class="price-features">
+          <li>Hair styling & braiding</li>
+          <li>Makeup artistry</li>
+          <li>Client service management</li>
+          <li>Beauty business setup</li>
+          <li>Pricing & marketing your services</li>
+          <li>Entrepreneurship & business module</li>
+        </ul>
+        <button class="price-btn price-btn-outline" onclick="openEnroll('Beauty Services')">Apply now</button>
+      </div>
+      <div class="price-card">
+        <div class="price-track">💻 Digital Skills</div>
+        <div class="price-amount">₦250,000 <span>per program</span></div>
+        <div class="price-duration">3–6 months · Lab-based training</div>
+        <ul class="price-features">
+          <li>Basic graphic design</li>
+          <li>Social media management</li>
+          <li>Content creation fundamentals</li>
+          <li>Digital marketing basics</li>
+          <li>Freelancing platforms overview</li>
+          <li>Entrepreneurship & business module</li>
+        </ul>
+        <button class="price-btn price-btn-outline" onclick="openEnroll('Digital Skills')">Apply now</button>
+      </div>
+    </div>
+    <div style="margin-top:2rem; background:var(--color-background-secondary); border-radius:12px; padding:1.5rem; text-align:center;">
+      <div style="font-size:15px; font-weight:500; margin-bottom:0.5rem;">Payment plan available</div>
+      <div style="font-size:14px; color:var(--color-text-secondary);">Pay 40–50% deposit to secure your place. Balance spread over 2–3 months. Certificate released on full payment.</div>
+    </div>
+  </div>
+</div>
+
+<div id="about" class="page">
+  <div style="background:#1F4E79; padding: 3rem 2rem; text-align:center; color:#fff;">
+    <h2 style="font-size:28px; font-weight:500; margin-bottom:0.5rem;">About Skillspark</h2>
+    <p style="color:rgba(255,255,255,0.8); font-size:15px;">Empowering Skills. Creating Opportunities.</p>
+  </div>
+  <div class="section" style="max-width:800px;">
+    <div style="font-size:17px; line-height:1.8; color:var(--color-text-secondary); margin-bottom:2rem;">
+      Skillspark Vocational Academy was founded to address a specific and urgent gap in Lagos: thousands of secondary school graduates who complete their WAEC or NECO exams and then have nothing to do while they wait for university admission. Many wait for years. During that time, they have no income, no skills, and no economic independence.
+    </div>
+    <div style="font-size:17px; line-height:1.8; color:var(--color-text-secondary); margin-bottom:3rem;">
+      We believe that gap year does not have to be wasted. In 3 to 6 months, a young person can acquire a marketable skill, learn the basics of running a business, and start earning. That is exactly what Skillspark is built to deliver.
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:3rem;">
+      <div style="background:var(--color-background-secondary); border-radius:12px; padding:1.5rem;">
+        <div style="font-size:14px; color:#1D9E75; font-weight:500; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.05em; font-size:12px;">Our vision</div>
+        <div style="font-size:14px; line-height:1.7; color:var(--color-text-secondary);">To be among the top three youth-focused vocational training centers in Lagos within five years, known for empowering graduates with practical skills and entrepreneurial capacity.</div>
+      </div>
+      <div style="background:var(--color-background-secondary); border-radius:12px; padding:1.5rem;">
+        <div style="font-size:14px; color:#1D9E75; font-weight:500; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.05em; font-size:12px;">Our mission</div>
+        <div style="font-size:14px; line-height:1.7; color:var(--color-text-secondary);">To offer affordable, practical, market-aligned vocational training to secondary school graduates in Lagos, equipping them with skills and entrepreneurship knowledge to create their own income.</div>
+      </div>
+    </div>
+    <div style="font-size:20px; font-weight:500; margin-bottom:1.5rem;">Our training model</div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; text-align:center; margin-bottom:3rem;">
+      <div style="background:#1F4E79; border-radius:12px; padding:1.5rem; color:#fff;">
+        <div style="font-size:32px; font-weight:500; color:#9FE1CB;">70%</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.8); margin-top:0.4rem;">Practical training</div>
+      </div>
+      <div style="background:#1D9E75; border-radius:12px; padding:1.5rem; color:#fff;">
+        <div style="font-size:32px; font-weight:500;">20%</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.8); margin-top:0.4rem;">Supervised projects</div>
+      </div>
+      <div style="background:var(--color-background-secondary); border-radius:12px; padding:1.5rem;">
+        <div style="font-size:32px; font-weight:500; color:#1F4E79;">10%</div>
+        <div style="font-size:13px; color:var(--color-text-secondary); margin-top:0.4rem;">Theory & concepts</div>
+      </div>
+    </div>
+    <div style="font-size:20px; font-weight:500; margin-bottom:1rem;">Location</div>
+    <div style="background:var(--color-background-secondary); border-radius:12px; padding:1.5rem; font-size:14px; color:var(--color-text-secondary); line-height:1.8;">
+      12 Adeyemi Street, Yaba, Lagos, Nigeria<br>
+      info@skillsparkacademy.com · +234 901 234 5678<br>
+      www.skillsparkacademy.com
+    </div>
+  </div>
+</div>
+
+<div id="contact" class="page">
+  <div style="background:#1F4E79; padding: 3rem 2rem; text-align:center; color:#fff;">
+    <h2 style="font-size:28px; font-weight:500; margin-bottom:0.5rem;">Get in touch</h2>
+    <p style="color:rgba(255,255,255,0.8); font-size:15px;">We are happy to answer any questions before you enroll.</p>
+  </div>
+  <div class="section" style="max-width:700px;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:1rem; margin-bottom:3rem;">
+      <div style="background:var(--color-background-secondary); border-radius:12px; padding:1.25rem;">
+        <div style="font-size:12px; color:var(--color-text-secondary); margin-bottom:0.4rem;">Address</div>
+        <div style="font-size:14px; font-weight:500;">12 Adeyemi Street<br>Yaba, Lagos</div>
+      </div>
+      <div style="background:var(--color-background-secondary); border-radius:12px; padding:1.25rem;">
+        <div style="font-size:12px; color:var(--color-text-secondary); margin-bottom:0.4rem;">Phone</div>
+        <div style="font-size:14px; font-weight:500;">+234 901 234 5678</div>
+      </div>
+      <div style="background:var(--color-background-secondary); border-radius:12px; padding:1.25rem;">
+        <div style="font-size:12px; color:var(--color-text-secondary); margin-bottom:0.4rem;">Email</div>
+        <div style="font-size:14px; font-weight:500; word-break:break-all;">info@skillsparkacademy.com</div>
+      </div>
+      <div style="background:var(--color-background-secondary); border-radius:12px; padding:1.25rem;">
+        <div style="font-size:12px; color:var(--color-text-secondary); margin-bottom:0.4rem;">Website</div>
+        <div style="font-size:14px; font-weight:500;">www.skillsparkacademy.com</div>
+      </div>
+    </div>
+    <div style="font-size:18px; font-weight:500; margin-bottom:1.5rem;">Send us a message</div>
+    <div class="form-group"><label>Full name</label><input type="text" placeholder="Your full name" /></div>
+    <div class="form-group"><label>Phone number</label><input type="text" placeholder="+234..." /></div>
+    <div class="form-group"><label>Email address</label><input type="email" placeholder="your@email.com" /></div>
+    <div class="form-group"><label>Course of interest</label>
+      <select style="width:100%; padding:10px 14px; border:0.5px solid var(--color-border-tertiary); border-radius:8px; font-size:14px; background:var(--color-background-primary); color:var(--color-text-primary);">
+        <option>Fashion & Tailoring</option>
+        <option>Catering & Baking</option>
+        <option>Beauty Services</option>
+        <option>Digital Skills</option>
+        <option>Not sure yet</option>
+      </select>
+    </div>
+    <button style="width:100%; padding:12px; background:#1D9E75; color:#fff; border:none; border-radius:8px; font-size:15px; cursor:pointer; font-weight:500;" onclick="this.textContent='Message sent! We will be in touch within 24 hours.'">Send message</button>
+  </div>
+</div>
+
+<div class="footer">
+  &copy; 2026 <span>Skillspark Vocational Academy</span> · Yaba, Lagos · Empowering Skills. Creating Opportunities.
+</div>
+
+<div class="enroll-modal" id="enrollModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeEnroll()">✕</button>
+    <div id="enrollForm">
+      <div class="modal-title">Apply for a course</div>
+      <div class="modal-sub">Fill in your details and we will contact you within 24 hours to confirm your place.</div>
+      <div class="form-group"><label>Full name</label><input type="text" placeholder="Your full name" /></div>
+      <div class="form-group"><label>Phone number</label><input type="text" placeholder="+234..." /></div>
+      <div class="form-group"><label>Preferred course</label>
+        <select id="modalCourse" style="width:100%; padding:10px 14px; border:0.5px solid var(--color-border-tertiary); border-radius:8px; font-size:14px; background:var(--color-background-primary); color:var(--color-text-primary);">
+          <option>Fashion & Tailoring</option>
+          <option>Catering & Baking</option>
+          <option>Beauty Services</option>
+          <option>Digital Skills</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Payment preference</label>
+        <select style="width:100%; padding:10px 14px; border:0.5px solid var(--color-border-tertiary); border-radius:8px; font-size:14px; background:var(--color-background-primary); color:var(--color-text-primary);">
+          <option>Full payment upfront (discount applies)</option>
+          <option>Installment plan (40% deposit + 2 payments)</option>
+          <option>Installment plan (50% deposit + 1 payment)</option>
+        </select>
+      </div>
+      <button class="modal-submit" onclick="submitEnroll()">Submit application</button>
+    </div>
+    <div class="success-msg" id="successMsg">
+      <div class="tick">✓</div>
+      <div style="font-size:18px; font-weight:500; margin-bottom:0.5rem;">Application received!</div>
+      <div style="font-size:14px; color:var(--color-text-secondary);">Thank you for applying to Skillspark Vocational Academy. Our team will contact you within 24 hours to confirm your enrollment and payment details.</div>
+      <button style="margin-top:1.5rem; padding:10px 24px; background:#1D9E75; color:#fff; border:none; border-radius:8px; cursor:pointer;" onclick="closeEnroll()">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+function openEnroll(course) {
+  document.getElementById('enrollModal').classList.add('open');
+  document.getElementById('enrollForm').style.display = 'block';
+  document.getElementById('successMsg').style.display = 'none';
+  if (course) {
+    var sel = document.getElementById('modalCourse');
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === course || sel.options[i].text === course) sel.selectedIndex = i;
+    }
+  }
+}
+function closeEnroll() {
+  document.getElementById('enrollModal').classList.remove('open');
+}
+function submitEnroll() {
+  document.getElementById('enrollForm').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+}
+</script>
