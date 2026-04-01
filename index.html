@@ -1,4 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skillspark Vocational Academy</title>
 <style>
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-text-primary: #333333;
+  --color-text-secondary: #666666;
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f8f9fa;
+  --color-border-tertiary: #e0e0e0;
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: var(--font-sans); color: var(--color-text-primary); }
 
@@ -113,7 +127,8 @@ body { font-family: var(--font-sans); color: var(--color-text-primary); }
 .success-msg { display: none; text-align: center; padding: 1rem; }
 .success-msg .tick { font-size: 48px; color: #1D9E75; margin-bottom: 0.5rem; }
 </style>
-
+</head>
+<body>
 <div class="nav">
   <div class="nav-brand">Skill<span>spark</span> Academy</div>
   <div class="nav-links">
@@ -519,3 +534,5 @@ function submitEnroll() {
   document.getElementById('successMsg').style.display = 'block';
 }
 </script>
+</body>
+</html>
