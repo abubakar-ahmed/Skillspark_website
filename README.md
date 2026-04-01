@@ -1,21 +1,29 @@
-# Skillspark_website
+# Skillspark Vocational Academy Website
 
-A static website for Skillspark Vocational Academy.
+This is the official website for Skillspark Vocational Academy, a vocational training center located in Yaba, Lagos, Nigeria. The academy provides practical, market-aligned skills training programs designed for secondary school graduates who want to start earning income quickly.
 
-## Deployment
+## Programs Offered
 
-This site is ready for deployment on static hosting platforms.
+- **Fashion & Tailoring**: Garment construction, pattern drafting, sewing techniques, and fashion branding
+- **Catering & Baking**: Baking techniques, event catering, food hygiene, and pricing strategy
+- **Beauty Services**: Hair styling, makeup artistry, and client management
+- **Digital Skills**: Graphic design, social media management, content creation, and digital marketing
 
-### GitHub Pages
+Each program lasts 3-6 months and includes entrepreneurship education to help graduates start their own businesses or get hired.
 
-1. Go to your repository on GitHub.
-2. Click on "Settings" tab.
-3. Scroll down to "Pages" section.
-4. Under "Source", select "Deploy from a branch".
-5. Select "main" branch and "/ (root)" folder.
-6. Click "Save".
-7. The site will be available at `https://abubakar-ahmed.github.io/Skillspark_website/`
+## Features
 
-### Other Platforms
+- Single-page application with navigation between Home, Courses, About, and Contact sections
+- Interactive enrollment modal with course selection
+- Responsive design optimized for mobile and desktop
+- Testimonials from graduates
+- Contact information and location details
 
-You can deploy this to any static host like Netlify, Vercel, or Surge by uploading the `index.html` file.
+## Technology
+
+Built with:
+- HTML5
+- CSS3 (with CSS custom properties)
+- Vanilla JavaScript
+
+The website is static and can be deployed on any web hosting platform.
